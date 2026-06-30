@@ -19,6 +19,7 @@ data/processed/
 # Model artefacts
 models/
 indexes/
+artifacts/retrieval/
 
 # OS / IDE
 .DS_Store
