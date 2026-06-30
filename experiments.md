@@ -84,3 +84,72 @@ scratch and produce a verified raw corpus about Melbourne's lost and heritage pl
 - Safe restart from `/tmp` confirmed: skips already-collected files.
 - Backup at `~/Documents/Lost-Melbourne-AI-backups/raw_corpus_20260630.tar.gz` (1.2 MB).
 - Result: **pass**.
+
+---
+
+## 2026-06-30 — Phase 2: Historical Knowledge Fabric
+
+### Goal
+
+Transform the immutable Phase 1 evidence into a deterministic, provenance-preserving
+historical data layer without embeddings, model training, a final RAG pipeline, or UI work.
+
+### Evidence verification
+
+- Verified 25 raw Markdown files, 25 raw HTML files, and successful metadata for every source.
+- Parsed complete provenance headers and matched every stored SHA-256 to the corresponding
+  raw HTML bytes.
+- Snapshotted all raw evidence before and after processing; no raw file changed.
+- Committed a content-free identity record in `reports/corpus_fingerprint.json`.
+
+### Pipeline and model
+
+- Added `scripts/prepare_corpus.py`, rooted from its own repository location and safe to run
+  from another current working directory.
+- Added deterministic cleaning, 291–448-word document-only passages with modest overlap,
+  stable canonical IDs, conservative alias handling, explicit date preservation, document-level
+  splits, coordinate extraction without fabricated points, and exact claim-span validation.
+- Added versioned optional second-stage contracts in `config/extraction_schema.json` and
+  `config/extraction_prompt.md`. No LLM was called in this run.
+- Added a 6,000-word per-source training cap. Only cleaned source text with compatible
+  licences is included in the future educational Transformer corpus.
+
+### Real Phase 2 results
+
+| Metric | Value |
+| --- | ---: |
+| Raw documents verified | 25 |
+| Cleaned usable documents | 24 |
+| Excluded documents | 1 (`wiki_moomba`, 28-word disambiguation page) |
+| Raw words including page chrome | 106,206 |
+| Cleaned words | 66,558 |
+| Approximate cleaned tokens | 88,523 |
+| Passages | 182 |
+| Entities | 410 |
+| Historical events | 61 |
+| Relations | 7 |
+| Validated claims | 68 |
+| Unsupported claims accepted | 0 |
+| GeoJSON point features | 12 |
+| Detected cross-source conflict groups | 0 |
+| Training words after caps | 59,389 |
+| Approximate training tokens | 78,988 |
+| Train / validation / test documents | 19 / 2 / 3 |
+
+### Source balance and licences
+
+- `wiki_architecture_melbourne` fell from 19.60% of cleaned words to 10.10% of training
+  words after the 6,000-word cap.
+- `wiki_flinders_street_station` was also capped from 6,124 to 6,000 words.
+- All retained sources are training-compatible in this local corpus: 23 CC-BY-SA-4.0,
+  one CC-BY-4.0, and one OGL-AU raw source; the excluded disambiguation page was CC-BY-SA-4.0.
+- No exact or normalised near-duplicate documents were found.
+
+### Validation
+
+- 41 / 41 offline tests passed (23 collection tests + 18 preparation tests).
+- Tests cover empty input, unusable bodies, tampered hashes, missing provenance, raw
+  immutability, graph support links, exact claim spans, unsupported-claim rejection,
+  licence exclusions, valid GeoJSON, split isolation, deterministic reruns, and execution
+  from `/tmp`.
+- Result: **pass**.

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lost-melbourne.local/schemas/extraction-1.0.0.json",
+  "title": "Lost Melbourne candidate extraction",
+  "version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["passage_id", "entities", "events", "relations", "claims"],
+  "properties": {
+    "passage_id": {"type": "string", "minLength": 1},
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "entity_type", "supporting_text", "confidence"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "entity_type": {
+            "enum": ["building", "street", "suburb", "landmark", "architect", "person", "organisation", "market", "theatre", "railway_station", "hotel", "church", "government_institution", "place"]
+          },
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "description": {"type": ["string", "null"]},
+          "supporting_text": {"type": "string", "minLength": 1},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event_type", "entities", "date_original", "supporting_text", "confidence"],
+        "properties": {
+          "event_type": {"enum": ["construction", "opening", "renovation", "renaming", "relocation", "closure", "demolition", "fire", "redevelopment", "heritage_listing"]},
+          "entities": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "date_original": {"type": ["string", "null"]},
+          "location": {"type": ["string", "null"]},
+          "supporting_text": {"type": "string", "minLength": 1},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["subject", "predicate", "object", "supporting_text", "confidence"],
+        "properties": {
+          "subject": {"type": "string", "minLength": 1},
+          "predicate": {"enum": ["DESIGNED_BY", "LOCATED_IN", "REPLACED_BY", "DEMOLISHED_IN", "OPERATED_BY", "RENAMED_TO", "ASSOCIATED_WITH", "PART_OF"]},
+          "object": {"type": "string", "minLength": 1},
+          "supporting_text": {"type": "string", "minLength": 1},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["subject", "predicate", "object_or_value", "supporting_text", "confidence"],
+        "properties": {
+          "subject": {"type": "string", "minLength": 1},
+          "predicate": {"type": "string", "minLength": 1},
+          "object_or_value": {},
+          "supporting_text": {"type": "string", "minLength": 1},
+          "temporal_qualifier": {"type": ["string", "null"]},
+          "geographic_qualifier": {"type": ["string", "null"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}
