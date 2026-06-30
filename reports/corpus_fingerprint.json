@@ -1,0 +1,231 @@
+{
+  "corpus_file_count": 25,
+  "schema_version": 1,
+  "sources": [
+    {
+      "collection_status": "ok",
+      "content_hash": "fabd4b8b69a9ece7270ad45c8583330e3dcd7ac476511459a89714687cdca58c",
+      "file_size": 7684,
+      "licence": "CC-BY-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:28.834346+00:00",
+      "source_id": "prov_about",
+      "source_url": "https://prov.vic.gov.au/about-us"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "ed84c49caa5bb46232e46af5a5c5d89d6111fe5c1a13c23826f727481f3e3801",
+      "file_size": 19888,
+      "licence": "OGL-AU",
+      "retrieval_timestamp": "2026-06-30T05:17:28.509071+00:00",
+      "source_id": "vhd_introduction",
+      "source_url": "https://vhd.heritagecouncil.vic.gov.au/about"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "e2e1400eac9df146cfc71bf40378ed09cbb3a3fae96445eac771f67482784575",
+      "file_size": 122019,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:49.524379+00:00",
+      "source_id": "wiki_architecture_melbourne",
+      "source_url": "https://en.wikipedia.org/wiki/Architecture_of_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "cc25e862764f8cd3165d8f339b854d8b9640462ff4330886077dc206ca34ce5e",
+      "file_size": 15810,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:14.428057+00:00",
+      "source_id": "wiki_bourke_street",
+      "source_url": "https://en.wikipedia.org/wiki/Bourke_Street,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "862a281e6cbc336cb1d88921e439b83af1d453f0fec8d85cb302a439f828c4f9",
+      "file_size": 26087,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:21.430789+00:00",
+      "source_id": "wiki_carlton_suburb",
+      "source_url": "https://en.wikipedia.org/wiki/Carlton,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "c2fb9699481fff22d198fea1bf7844dc87464c74d429ef9e85e0235550b21ff5",
+      "file_size": 25529,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:18.552498+00:00",
+      "source_id": "wiki_collingwood_suburb",
+      "source_url": "https://en.wikipedia.org/wiki/Collingwood,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "79cf7bb97266fbcb4ead7a70b39054bd344ac182e9e8939321226be655db873e",
+      "file_size": 18780,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:30.627290+00:00",
+      "source_id": "wiki_collins_street",
+      "source_url": "https://en.wikipedia.org/wiki/Collins_Street,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "7cabeba1184e9b6fb9c0c2eec8122c0550a020e606afbe6b43fd802885b261fb",
+      "file_size": 26707,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:06.467385+00:00",
+      "source_id": "wiki_eastern_market_melbourne",
+      "source_url": "https://en.wikipedia.org/wiki/Eastern_Market,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "6f3db7ccb1d3ddc176718e92f5cf49624261f511e67a8f030953b0546d12aad5",
+      "file_size": 39554,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:50.583138+00:00",
+      "source_id": "wiki_federation_square",
+      "source_url": "https://en.wikipedia.org/wiki/Federation_Square"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "b361381646d4b0f04b6b237428911e44795b2c784491b71a463ee5268a2a5829",
+      "file_size": 51280,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:16.437375+00:00",
+      "source_id": "wiki_fitzroy_suburb",
+      "source_url": "https://en.wikipedia.org/wiki/Fitzroy,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "59218727e1586df8d9c8136ad1cd3d88a45f617e0b1e5035c5137ef63a206217",
+      "file_size": 70044,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:58.321422+00:00",
+      "source_id": "wiki_flinders_street_station",
+      "source_url": "https://en.wikipedia.org/wiki/Flinders_Street_station"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "c98bef39ff72d61ff911c21a7ed9b8e1643a01a5bb282e7c933db64bbf0f681f",
+      "file_size": 21616,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:12.400343+00:00",
+      "source_id": "wiki_hotel_windsor",
+      "source_url": "https://en.wikipedia.org/wiki/Hotel_Windsor,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "64d257db1676deba0c7269bccbf78f2c3f0306c7327399118a726781430a61c1",
+      "file_size": 46095,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:28.975311+00:00",
+      "source_id": "wiki_melbourne_gaol",
+      "source_url": "https://en.wikipedia.org/wiki/Melbourne_Gaol"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "521c191739b5e1c2bfc22111dea942efc42ddc34bf02a11880702767ffa09ec4",
+      "file_size": 54915,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:04.375255+00:00",
+      "source_id": "wiki_melbournes_past",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "5fe871c444662970fe418ece60d8730f8679ad935685561f668968d1f1516499",
+      "file_size": 2720,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:54.335078+00:00",
+      "source_id": "wiki_moomba",
+      "source_url": "https://en.wikipedia.org/wiki/Moomba"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "89ba006e78382d4958182ec1d987ac4f592ca93b5a1fc87ad2fc39b9273eb4ef",
+      "file_size": 16434,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:24.488511+00:00",
+      "source_id": "wiki_north_melbourne_suburb",
+      "source_url": "https://en.wikipedia.org/wiki/North_Melbourne,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "761afb8586fafb5275998579836f221037d2514621f659e7e14bfa52e0debc55",
+      "file_size": 28344,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:26.497530+00:00",
+      "source_id": "wiki_port_melbourne",
+      "source_url": "https://en.wikipedia.org/wiki/Port_Melbourne,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "236d998cdee5117c46af777186a36745d1302cea2bd2bbfecc0271c9a3abcaa2",
+      "file_size": 20892,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:02.435472+00:00",
+      "source_id": "wiki_princes_bridge",
+      "source_url": "https://en.wikipedia.org/wiki/Princes_Bridge,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "b21aca7a7fdbbfeccaf9d599513008e2caa0f37e0c486f62485ecf7e022076de",
+      "file_size": 20661,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:22.491560+00:00",
+      "source_id": "wiki_richmond_suburb",
+      "source_url": "https://en.wikipedia.org/wiki/Richmond,_Victoria"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "60512e60881566ef5fef22f361daa55cb217e44879d3eaf4f5efc718fe2c3b6e",
+      "file_size": 38633,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:00.594008+00:00",
+      "source_id": "wiki_royal_exhibition_building",
+      "source_url": "https://en.wikipedia.org/wiki/Royal_Exhibition_Building"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "604e1b09ee31555f56b032e08c3562e514e323064704bbe8f9ee4fdb438a878a",
+      "file_size": 5955,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:08.389749+00:00",
+      "source_id": "wiki_south_melbourne_market",
+      "source_url": "https://en.wikipedia.org/wiki/South_Melbourne_Market"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "a71536b4fe08e8ff9ddf58c5946d02ecb7b4a2d2186bbc7bc1140a291c1bbd24",
+      "file_size": 9175,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:32.521545+00:00",
+      "source_id": "wiki_spencer_street",
+      "source_url": "https://en.wikipedia.org/wiki/Spencer_Street,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "67f37aaf9f1d4514dfad9a4e9bc7ad13be901a53751a21852d2e635e2b4b58de",
+      "file_size": 15645,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:56.212412+00:00",
+      "source_id": "wiki_swanston_street",
+      "source_url": "https://en.wikipedia.org/wiki/Swanston_Street,_Melbourne"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "f0b263d7923eed450b19185f7d825c598baba92dacd39f210d00c123bf6f9512",
+      "file_size": 20265,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:16:52.728708+00:00",
+      "source_id": "wiki_victoria_market_heritage",
+      "source_url": "https://en.wikipedia.org/wiki/Queen_Victoria_Market"
+    },
+    {
+      "collection_status": "ok",
+      "content_hash": "27e224601a2a37336734722a2d42a907132fcb424a37c822948ec0af80189970",
+      "file_size": 14561,
+      "licence": "CC-BY-SA-4.0",
+      "retrieval_timestamp": "2026-06-30T05:17:10.362466+00:00",
+      "source_id": "wiki_young_and_jacksons",
+      "source_url": "https://en.wikipedia.org/wiki/Young_%26_Jackson"
+    }
+  ]
+}

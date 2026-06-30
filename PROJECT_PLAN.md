@@ -1,4 +1,4 @@
-# Lost Melbourne AI Project Plan
+# Lost Melbourne — The City That Remembers — Project Plan
 
 ## Delivery rule
 
@@ -17,7 +17,7 @@ Work one phase at a time. After each phase:
 - Create folder structure for data, code, wiki, evaluation, app.
 - Create `README.md`, `PROJECT_PLAN.md`, `experiments.md`.
 
-### Phase 2 - Data collection (30-50 pages)
+### Phase 1 Recovery - Evidence collection
 - Build scraper that:
   - reads per-site robots.txt;
   - respects crawl delay and disallow rules;
@@ -25,23 +25,24 @@ Work one phase at a time. After each phase:
   - stores source URL, timestamp, license/terms notes.
 - Target publicly accessible and legally reusable sources.
 
-### Phase 3 - Cleaning and normalization
-- Parse raw HTML into clean text.
-- Remove boilerplate/navigation noise.
-- Preserve provenance for each extracted passage.
-- Save cleaned docs as Markdown or JSONL for downstream steps.
+### Phase 2 - Historical Knowledge Fabric
+- Verify immutable raw evidence and publish a sanitised corpus fingerprint.
+- Clean and split documents without crossing source boundaries.
+- Extract source-supported entities, events, relations, claims, dates, and places.
+- Create document-level splits and a licence-filtered, source-balanced future training corpus.
+- Do not create embeddings, train a model, build final RAG, or create the UI.
 
-### Phase 4 - LLM Wiki generation
+### Phase 3 - Knowledge exploration and linked wiki
 - Create interconnected Markdown pages in `wiki/pages/`.
 - Link entities (buildings, suburbs, timelines, people, events).
 - Keep citation links to source passages.
 
-### Phase 5 - Tokenizer implementation
+### Phase 4 - Tokenizer implementation
 - Implement tokenizer training and encode/decode pipeline.
 - Persist vocab and tokenizer config.
 - Create train/validation tokenized datasets.
 
-### Phase 6 - Tiny decoder-only Transformer (PyTorch)
+### Phase 5 - Tiny decoder-only Transformer (PyTorch)
 - Implement:
   - token embeddings;
   - positional embeddings;
@@ -53,20 +54,20 @@ Work one phase at a time. After each phase:
 - Keep local-Mac-friendly size:
   - 2-4 layers, 4 heads, 128-256 embedding dim, ~256 context length.
 
-### Phase 7 - Training loop
+### Phase 6 - Training loop
 - Train model locally.
 - Track and save:
   - train loss;
   - validation loss;
   - checkpoints and configs.
 
-### Phase 8 - Embedding search experiments
+### Phase 7 - Embedding search experiments
 - Derive passage embeddings from trained tiny model.
 - Implement cosine-similarity retrieval baseline.
 - Build pretrained sentence-transformer index in FAISS or ChromaDB.
 - Compare retrieval precision between both systems.
 
-### Phase 9 - RAG pipeline
+### Phase 8 - RAG pipeline
 - Build manual retrieval + context assembly + generation flow.
 - Return factual answers with citations.
 - Optional mode: clearly labelled creative vignette (non-factual embellishment flagged).
@@ -75,7 +76,7 @@ Work one phase at a time. After each phase:
   - vector-search RAG;
   - LLM Wiki + RAG.
 
-### Phase 10 - Evaluation
+### Phase 9 - Evaluation
 - Measure:
   - training loss;
   - validation loss;
@@ -84,10 +85,9 @@ Work one phase at a time. After each phase:
   - unsupported-claim rate.
 - Record outputs and observations in `experiments.md`.
 
-### Phase 11 - Streamlit interface
+### Phase 10 - Streamlit interface
 - Add simple UI to:
   - run queries;
   - view retrieved passages;
   - inspect citations;
   - choose mode (Tiny LM / RAG / Wiki+RAG).
-

@@ -1,0 +1,26 @@
+source_id,licence,training_eligible,words_before,percent_before,words_after,cap_words,decision,percent_after
+prov_about,CC-BY-4.0,True,524,0.7869522121767338,524,6000,included in full,0.8823182744279243
+vhd_introduction,OGL-AU,True,514,0.7719340401886283,514,6000,included in full,0.8654801394197579
+wiki_architecture_melbourne,CC-BY-SA-4.0,True,13045,19.591205358483766,6000,6000,"capped at 6,000 words",10.102881004899897
+wiki_bourke_street,CC-BY-SA-4.0,True,1530,2.297780314180158,1530,6000,included in full,2.576234656249474
+wiki_carlton_suburb,CC-BY-SA-4.0,True,2468,3.7064848466644635,2468,6000,included in full,4.1556517200154905
+wiki_collingwood_suburb,CC-BY-SA-4.0,True,2110,3.1688342894902832,2110,6000,included in full,3.5528464867231304
+wiki_collins_street,CC-BY-SA-4.0,True,1689,2.536569248791037,1689,6000,included in full,2.843961002879321
+wiki_eastern_market_melbourne,CC-BY-SA-4.0,True,2715,4.077433694770673,2715,6000,included in full,4.571553654717204
+wiki_federation_square,CC-BY-SA-4.0,True,3766,5.655843570720572,3766,6000,included in full,6.3412416440755015
+wiki_fitzroy_suburb,CC-BY-SA-4.0,True,4643,6.972937254077434,4643,6000,included in full,7.8179460842917035
+wiki_flinders_street_station,CC-BY-SA-4.0,True,6124,9.197128525515874,6000,6000,"capped at 6,000 words",10.102881004899897
+wiki_hotel_windsor,CC-BY-SA-4.0,True,1765,2.6507073559006398,1765,6000,included in full,2.9719308289413866
+wiki_melbourne_gaol,CC-BY-SA-4.0,True,4152,6.235545009461449,4152,6000,included in full,6.991193655390729
+wiki_melbournes_past,CC-BY-SA-4.0,True,5870,8.815666957017992,5870,6000,included in full,9.883985249793731
+wiki_north_melbourne_suburb,CC-BY-SA-4.0,True,1524,2.2887694109872947,1524,6000,included in full,2.5661317752445743
+wiki_port_melbourne,CC-BY-SA-4.0,True,3167,4.756255068633046,3167,6000,included in full,5.3326373570863295
+wiki_princes_bridge,CC-BY-SA-4.0,True,1560,2.342834830144475,1560,6000,included in full,2.6267490612739732
+wiki_richmond_suburb,CC-BY-SA-4.0,True,2053,3.083230709158081,2053,6000,included in full,3.4568691171765815
+wiki_royal_exhibition_building,CC-BY-SA-4.0,True,2875,4.317724446580362,2875,6000,included in full,4.840963814847867
+wiki_south_melbourne_market,CC-BY-SA-4.0,True,271,0.40699246087766194,271,6000,included in full,0.456313458721312
+wiki_spencer_street,CC-BY-SA-4.0,True,628,0.9431412008530322,628,6000,included in full,1.0574348785128558
+wiki_swanston_street,CC-BY-SA-4.0,True,1531,2.2992821313789684,1531,6000,included in full,2.5779184697502906
+wiki_victoria_market_heritage,CC-BY-SA-4.0,True,1547,2.3233112065599375,1547,6000,included in full,2.604859485763357
+wiki_young_and_jacksons,CC-BY-SA-4.0,True,487,0.731384975820743,487,6000,included in full,0.8200171748977083
+wiki_moomba,CC-BY-SA-4.0,False,28,0.0420508815666957,0,6000,excluded: insufficient historical content,0.0
