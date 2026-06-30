@@ -1,0 +1,8 @@
+{
+  "results": {
+    "bindings": [
+      {"item": {"value": "http://www.wikidata.org/entity/Q1"}, "itemLabel": {"value": "Old Melbourne Gaol"}, "demolished": {"value": "1929-01-01T00:00:00Z"}},
+      {"item": {"value": "http://www.wikidata.org/entity/Q2"}, "itemLabel": {"value": "Eastern Market Melbourne"}, "demolished": {"value": "1960-01-01T00:00:00Z"}}
+    ]
+  }
+}

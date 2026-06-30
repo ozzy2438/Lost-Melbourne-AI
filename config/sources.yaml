@@ -1,0 +1,279 @@
+# Lost Melbourne AI — Source Registry
+# This is a REPLACEMENT corpus, not an exact reconstruction of any earlier unverified run.
+# The original collect.py and source list were not found in the repository or local machine.
+# All sources below are newly selected reputable public sources about demolished buildings,
+# historic places and changing neighbourhoods in Melbourne, Victoria, Australia.
+#
+# Licence key:
+#   CC-BY-4.0  — Creative Commons Attribution 4.0 International
+#   CC-BY-SA-4.0 — Creative Commons Attribution-ShareAlike 4.0
+#   OGL-AU    — Australian Government Open Government Licence
+#   PUBLIC-DOMAIN — Public domain or equivalent
+#   REVIEW-NEEDED — Terms permit reading but reuse for training must be verified;
+#                   content will be collected but flagged in the manifest.
+#
+# A page being publicly readable does NOT automatically make it suitable for model training.
+# Before including flagged sources in a released training corpus, verify the licence
+# or obtain permission.
+
+sources:
+
+  # ── Wikipedia / Wikimedia (CC-BY-SA-4.0) ──────────────────────────────────
+  - source_id: wiki_architecture_melbourne
+    name: "Wikipedia — Architecture of Melbourne"
+    url: "https://en.wikipedia.org/wiki/Architecture_of_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne architecture history demolished buildings
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces 'Lost Melbourne' redirect which 404s."
+
+  - source_id: wiki_federation_square
+    name: "Wikipedia — Federation Square Melbourne"
+    url: "https://en.wikipedia.org/wiki/Federation_Square"
+    source_type: wikipedia
+    expected_topic: Melbourne landmark replacing demolished buildings
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces Queen's Bridge Hotel which 404s."
+
+  - source_id: wiki_victoria_market_heritage
+    name: "Wikipedia — Queen Victoria Market"
+    url: "https://en.wikipedia.org/wiki/Queen_Victoria_Market"
+    source_type: wikipedia
+    expected_topic: heritage market Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_moomba
+    name: "Wikipedia — Moomba"
+    url: "https://en.wikipedia.org/wiki/Moomba"
+    source_type: wikipedia
+    expected_topic: Melbourne festival history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_swanston_street
+    name: "Wikipedia — Swanston Street Melbourne"
+    url: "https://en.wikipedia.org/wiki/Swanston_Street,_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne CBD street history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_flinders_street_station
+    name: "Wikipedia — Flinders Street Station"
+    url: "https://en.wikipedia.org/wiki/Flinders_Street_station"
+    source_type: wikipedia
+    expected_topic: heritage railway station Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_royal_exhibition_building
+    name: "Wikipedia — Royal Exhibition Building"
+    url: "https://en.wikipedia.org/wiki/Royal_Exhibition_Building"
+    source_type: wikipedia
+    expected_topic: heritage building Melbourne Carlton
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_princes_bridge
+    name: "Wikipedia — Princes Bridge Melbourne"
+    url: "https://en.wikipedia.org/wiki/Princes_Bridge,_Melbourne"
+    source_type: wikipedia
+    expected_topic: heritage bridge Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_melbournes_past
+    name: "Wikipedia — History of Melbourne"
+    url: "https://en.wikipedia.org/wiki/History_of_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne colonial and modern history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_eastern_market_melbourne
+    name: "Wikipedia — Eastern Market Melbourne (demolished)"
+    url: "https://en.wikipedia.org/wiki/Eastern_Market,_Melbourne"
+    source_type: wikipedia
+    expected_topic: demolished market Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_south_melbourne_market
+    name: "Wikipedia — South Melbourne Market"
+    url: "https://en.wikipedia.org/wiki/South_Melbourne_Market"
+    source_type: wikipedia
+    expected_topic: heritage market South Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_young_and_jacksons
+    name: "Wikipedia — Young and Jackson Hotel"
+    url: "https://en.wikipedia.org/wiki/Young_%26_Jackson"
+    source_type: wikipedia
+    expected_topic: heritage hotel Melbourne CBD
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "URL corrected — article title is 'Young & Jackson', not 'Young and Jackson's Hotel'."
+
+  - source_id: wiki_hotel_windsor
+    name: "Wikipedia — Hotel Windsor Melbourne"
+    url: "https://en.wikipedia.org/wiki/Hotel_Windsor,_Melbourne"
+    source_type: wikipedia
+    expected_topic: heritage hotel Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces Menzies Hotel which 404s."
+
+  - source_id: wiki_bourke_street
+    name: "Wikipedia — Bourke Street Melbourne"
+    url: "https://en.wikipedia.org/wiki/Bourke_Street,_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne CBD street history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces Scott's Hotel which 404s."
+
+  - source_id: wiki_fitzroy_suburb
+    name: "Wikipedia — Fitzroy Melbourne"
+    url: "https://en.wikipedia.org/wiki/Fitzroy,_Victoria"
+    source_type: wikipedia
+    expected_topic: inner suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_collingwood_suburb
+    name: "Wikipedia — Collingwood Melbourne"
+    url: "https://en.wikipedia.org/wiki/Collingwood,_Victoria"
+    source_type: wikipedia
+    expected_topic: inner suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_carlton_suburb
+    name: "Wikipedia — Carlton Melbourne"
+    url: "https://en.wikipedia.org/wiki/Carlton,_Victoria"
+    source_type: wikipedia
+    expected_topic: inner suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_richmond_suburb
+    name: "Wikipedia — Richmond Melbourne"
+    url: "https://en.wikipedia.org/wiki/Richmond,_Victoria"
+    source_type: wikipedia
+    expected_topic: inner suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_north_melbourne_suburb
+    name: "Wikipedia — North Melbourne"
+    url: "https://en.wikipedia.org/wiki/North_Melbourne,_Victoria"
+    source_type: wikipedia
+    expected_topic: inner suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  - source_id: wiki_port_melbourne
+    name: "Wikipedia — Port Melbourne"
+    url: "https://en.wikipedia.org/wiki/Port_Melbourne,_Victoria"
+    source_type: wikipedia
+    expected_topic: docklands suburb history Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+
+  # ── Victorian Heritage Database (OGL-AU / State Govt open data) ───────────
+  - source_id: vhd_introduction
+    name: "Victorian Heritage Database — About"
+    url: "https://vhd.heritagecouncil.vic.gov.au/about"
+    source_type: government_page
+    expected_topic: Victorian heritage register overview
+    licence: OGL-AU
+    licence_url: "https://www.vic.gov.au/copyright"
+    enabled: true
+    notes: "Static about page; no individual heritage record scraping."
+
+  # ── Public Record Office Victoria (CC-BY) ─────────────────────────────────
+  - source_id: prov_about
+    name: "Public Record Office Victoria — About PROV"
+    url: "https://prov.vic.gov.au/about-us"
+    source_type: government_page
+    expected_topic: Victorian public records and history
+    licence: CC-BY-4.0
+    licence_url: "https://creativecommons.org/licenses/by/4.0/"
+    enabled: true
+
+  # ── Museum Victoria / Museums Victoria (CC-BY) ───────────────────────────
+  - source_id: wiki_melbourne_gaol
+    name: "Wikipedia — Melbourne Gaol"
+    url: "https://en.wikipedia.org/wiki/Melbourne_Gaol"
+    source_type: wikipedia
+    expected_topic: demolished and repurposed heritage building Melbourne
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces Museums Victoria page which 404s."
+
+  - source_id: wiki_collins_street
+    name: "Wikipedia — Collins Street Melbourne"
+    url: "https://en.wikipedia.org/wiki/Collins_Street,_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne CBD street history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces SLV building page which 404s."
+
+  - source_id: wiki_spencer_street
+    name: "Wikipedia — Spencer Street Melbourne"
+    url: "https://en.wikipedia.org/wiki/Spencer_Street,_Melbourne"
+    source_type: wikipedia
+    expected_topic: Melbourne CBD street history
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: true
+    notes: "Replaces Heritage Council page which 404s."
+
+  # ── Wikidata (CC0 public domain) ──────────────────────────────────────────
+  - source_id: wikidata_demolished_buildings_mel
+    name: "Wikidata SPARQL — demolished buildings in Melbourne"
+    url: "https://query.wikidata.org/sparql?query=SELECT%20%3Fitem%20%3FitemLabel%20%3Fdemolished%20WHERE%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ41176%20.%20%3Fitem%20wdt%3AP131%20wd%3AQ3141%20.%20%3Fitem%20wdt%3AP576%20%3Fdemolished%20.%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%20%7D%20LIMIT%2080&format=json"
+    source_type: sparql_json
+    expected_topic: structured list demolished buildings Melbourne
+    licence: CC0
+    licence_url: "https://creativecommons.org/publicdomain/zero/1.0/"
+    enabled: false
+    notes: "Disabled — query.wikidata.org/sparql disallows our user agent in robots.txt."
+
+  # ── Wikipedia API (machine-readable CC-BY-SA-4.0) ─────────────────────────
+  - source_id: wiki_api_lost_melbourne_category
+    name: "Wikipedia API — Category:Lost Melbourne"
+    url: "https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3ALost_Melbourne&cmlimit=50&format=json"
+    source_type: wikipedia_api
+    expected_topic: category listing demolished or lost Melbourne buildings
+    licence: CC-BY-SA-4.0
+    licence_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    enabled: false
+    notes: "Disabled — /w/api.php is within the robots.txt Disallow: /w/ block for generic agents."

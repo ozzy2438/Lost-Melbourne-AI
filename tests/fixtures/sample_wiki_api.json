@@ -1,0 +1,9 @@
+{
+  "query": {
+    "categorymembers": [
+      {"title": "Eastern Market, Melbourne"},
+      {"title": "Menzies Hotel, Melbourne"},
+      {"title": "Scott's Hotel, Melbourne"}
+    ]
+  }
+}
