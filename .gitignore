@@ -20,6 +20,11 @@ data/processed/
 models/
 indexes/
 artifacts/retrieval/
+artifacts/checkpoints/
+data/model/train.txt
+data/model/validation.txt
+data/model/test.txt
+data/model/tokenizers/
 
 # OS / IDE
 .DS_Store
