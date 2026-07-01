@@ -1,0 +1,153 @@
+{
+  "all_method_test_metrics": {
+    "bm25": {
+      "mrr": 0.6828703703703703,
+      "ndcg_at_10": 0.7581067866882653,
+      "query_count": 15.0,
+      "recall_at_1": 0.5,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.8333333333333334,
+      "recall_at_5": 0.9166666666666666,
+      "unanswerable_precision": 0.16666666666666666,
+      "unanswerable_recall": 0.6666666666666666,
+      "zero_result_rate": 0.8
+    },
+    "dense_bge_small": {
+      "mrr": 0.6722222222222223,
+      "ndcg_at_10": 0.7012992801676463,
+      "query_count": 15.0,
+      "recall_at_1": 0.5,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.8333333333333334,
+      "recall_at_5": 1.0,
+      "unanswerable_precision": 0.0,
+      "unanswerable_recall": 0.0,
+      "zero_result_rate": 0.06666666666666667
+    },
+    "dense_minilm": {
+      "mrr": 0.5953703703703703,
+      "ndcg_at_10": 0.6649000086371606,
+      "query_count": 15.0,
+      "recall_at_1": 0.4166666666666667,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.75,
+      "recall_at_5": 0.8333333333333334,
+      "unanswerable_precision": 0.0,
+      "unanswerable_recall": 0.0,
+      "zero_result_rate": 0.4666666666666667
+    },
+    "hybrid": {
+      "mrr": 0.7597222222222222,
+      "ndcg_at_10": 0.8183561056565356,
+      "query_count": 15.0,
+      "recall_at_1": 0.6666666666666666,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.75,
+      "recall_at_5": 0.9166666666666666,
+      "unanswerable_precision": 0.1111111111111111,
+      "unanswerable_recall": 0.3333333333333333,
+      "zero_result_rate": 0.6
+    },
+    "hybrid_structured": {
+      "mrr": 0.7805555555555556,
+      "ndcg_at_10": 0.8487949545753766,
+      "query_count": 15.0,
+      "recall_at_1": 0.6666666666666666,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.8333333333333334,
+      "recall_at_5": 0.9166666666666666,
+      "unanswerable_precision": 0.1,
+      "unanswerable_recall": 0.3333333333333333,
+      "zero_result_rate": 0.6666666666666666
+    },
+    "tfidf": {
+      "mrr": 0.8452380952380952,
+      "ndcg_at_10": 0.8746008547593067,
+      "query_count": 15.0,
+      "recall_at_1": 0.75,
+      "recall_at_10": 1.0,
+      "recall_at_3": 0.9166666666666666,
+      "recall_at_5": 0.9166666666666666,
+      "unanswerable_precision": 0.25,
+      "unanswerable_recall": 0.3333333333333333,
+      "zero_result_rate": 0.26666666666666666
+    }
+  },
+  "answerable_unanswerable_split": {
+    "development": {
+      "answerable": {
+        "abstention_rate": 0.1316,
+        "count": 38,
+        "success_rate": 0.8158
+      },
+      "unanswerable": {
+        "abstention_rate": 0.5714,
+        "count": 7,
+        "success_rate": 0.5714
+      }
+    },
+    "test": {
+      "answerable": {
+        "abstention_rate": 0.25,
+        "count": 12,
+        "success_rate": 0.6667
+      },
+      "unanswerable": {
+        "abstention_rate": 0.3333,
+        "count": 3,
+        "success_rate": 0.3333
+      }
+    }
+  },
+  "development_metrics": {
+    "mrr": 0.8530701754385965,
+    "ndcg_at_10": 0.8727160249253819,
+    "query_count": 45.0,
+    "recall_at_1": 0.7894736842105263,
+    "recall_at_10": 0.9736842105263158,
+    "recall_at_3": 0.9210526315789473,
+    "recall_at_5": 0.9473684210526315,
+    "unanswerable_precision": 0.4444444444444444,
+    "unanswerable_recall": 0.5714285714285714,
+    "zero_result_rate": 0.2
+  },
+  "evaluation_query_count": 60,
+  "phase2_counts": {
+    "claims": 60,
+    "documents": 24,
+    "entities": 413,
+    "events": 52,
+    "passages": 182,
+    "places": 12,
+    "relations": 8,
+    "splits": 24
+  },
+  "query_split_counts": {
+    "development_answerable": 38,
+    "development_unanswerable": 7,
+    "test_answerable": 12,
+    "test_unanswerable": 3
+  },
+  "run_description": "Phase 3 retrieval evaluation \u2014 held-out test set results for portfolio demo",
+  "schema_version": 2,
+  "selected_configuration": {
+    "abstention_threshold": 0.09917373598732979,
+    "default_method": "tfidf",
+    "model_winner": "bge-small",
+    "passage_strategy_winner": "original",
+    "query_transform_winner": "entity"
+  },
+  "source": "reports/retrieval_results.json",
+  "test_metrics": {
+    "mrr": 0.8452380952380952,
+    "ndcg_at_10": 0.8746008547593067,
+    "query_count": 15.0,
+    "recall_at_1": 0.75,
+    "recall_at_10": 1.0,
+    "recall_at_3": 0.9166666666666666,
+    "recall_at_5": 0.9166666666666666,
+    "unanswerable_precision": 0.25,
+    "unanswerable_recall": 0.3333333333333333,
+    "zero_result_rate": 0.26666666666666666
+  }
+}
