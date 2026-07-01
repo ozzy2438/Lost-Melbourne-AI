@@ -148,3 +148,16 @@ in `src/retrieval/dense.py`.
 The retrieval-only answerer returns evidence passages or an abstention fallback; it does
 not generate free-form answers, train the tiny Transformer, build the final RAG
 application, or create a production UI.
+
+## How to run the Streamlit demo
+
+Minimal preview UI over the existing retrieval-only answerer (`app/streamlit_app.py`).
+It does not change retrieval logic, does not use the Tiny Transformer, and has no
+authentication or database.
+
+```bash
+uv pip install --python .venv/bin/python -r requirements-app.txt
+.venv/bin/streamlit run app/streamlit_app.py
+```
+
+Requires the Phase 3 indexes to already be built (`scripts/build_retrieval_indexes.py`).

@@ -1,0 +1,4 @@
+# Streamlit demo dependency only.
+# Install alongside requirements-retrieval.txt, which provides the retrieval
+# pipeline itself (numpy, scikit-learn, sentence-transformers, torch, ...).
+streamlit==1.58.0
