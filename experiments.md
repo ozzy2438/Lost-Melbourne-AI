@@ -227,3 +227,110 @@ component.
   abstention, alternate working directories and sparse operation with no network.
 - The representation notebook ran top-to-bottom with six executed code cells and no errors.
 - Result: **pass**.
+
+---
+
+## 2026-07-01 — Phase 4: Tiny Transformer Laboratory
+
+### Goal
+
+Build, train, and evaluate a decoder-only Transformer language model from scratch on the
+Melbourne historical corpus, purely as an educational experiment.
+
+**Security constraints honoured:**
+
+- The tiny Transformer is never described as factually reliable.
+- It is not connected to the production retrieval answerer.
+- All generated text is labelled: *Tiny Transformer experimental generation — not a factual historical answer*.
+- Test data was not used for model, threshold, or strategy selection.
+- No raw evidence files were modified.
+
+### Components built
+
+| Component | File(s) | Purpose |
+| --- | --- | --- |
+| Character tokenizer | `src/tokenization/char_tokenizer.py` | Baseline tokenizer, vocab=115 |
+| BPE tokenizer | `src/tokenization/bpe_tokenizer.py` | 1,000 merges, vocab=1,065 |
+| Transformer config | `src/model/config.py` | `@dataclass` with save/load |
+| Causal self-attention | `src/model/attention.py` | QKV projection, causal mask, multi-head |
+| Tiny Transformer | `src/model/transformer.py` | 2–4-layer GPT-style decoder |
+| LM baselines | `src/model/baselines.py` | Unigram + bigram with add-alpha |
+| Tokenizer training script | `scripts/train_tokenizer.py` | Trains both tokenizers on train.txt |
+| Transformer training script | `scripts/train_transformer.py` | AdamW + LR schedule + checkpointing |
+| Text generation | `scripts/generate_text.py` | Greedy / temp / top-k with disclaimers |
+| Memorisation analysis | `scripts/analyse_memorisation.py` | N-gram overlap with training corpus |
+| Educational notebook | `notebooks/tiny_transformer_lab.ipynb` | 8-cell walkthrough |
+| CI workflow | `.github/workflows/ci.yml` | Offline tests on push/PR |
+
+### Tokenizer statistics
+
+| Metric | Character | BPE (1000 merges) |
+| --- | ---: | ---: |
+| Vocabulary size | 115 | 1,065 |
+| Train tokens | 389,157 | 137,535 |
+| Compression ratio | 1.000 | 0.354 |
+| BPE compression over char | — | **2.83×** |
+
+### Language model baselines
+
+| Model | Perplexity (BPE) | Perplexity (char) |
+| --- | ---: | ---: |
+| Unigram | 401.8 | 28.2 |
+| Bigram | 70.3 | 12.3 |
+| Tiny Transformer (best) | **52.9** | **7.3** |
+
+### Controlled experiments
+
+Three runs, all: 3,000 steps, AdamW, warmup 200 steps + cosine decay, grad clip 1.0, seed 42.
+
+| Run ID | Tokenizer | Layers | Embed | Params | Best val loss | Final train | Overfitting |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| `bpe_small_ctx128_v2` | BPE | 2 | 128 | 548,480 | 3.9690 (step 3000) | 3.6925 | Mild |
+| `char_small_ctx128` | Char | 2 | 128 | 426,880 | 1.9868 (step 3000) | 2.0560 | None |
+| `bpe_large_ctx256_v2` | BPE | 4 | 256 | 3,493,632 | 4.0733 (step 600) | 0.9550 | **Severe** |
+
+Hardware: Apple Silicon MPS with CPU fallback. Experiment JSONL: `experiments/transformer_runs.jsonl`.
+
+### Memorisation analysis (BPE small, best checkpoint)
+
+18 samples (6 prompts × 3 temperatures):
+
+| Finding | Count |
+| --- | ---: |
+| 3-gram overlap > 30% (likely memorised) | 1 / 18 |
+| 5-gram overlap > 0% | 1 / 18 |
+
+One high-overlap sample reproduced Wikipedia table formatting (`| | |` pipe characters),
+not factual multi-sentence statements. No multi-sentence historical claims memorised at 5-gram.
+
+### Test results
+
+```text
+Ran 99 tests in 1.761s   OK
+```
+
+| Test module | Tests | New in Phase 4 |
+| --- | ---: | ---: |
+| `test_collect.py` | 23 | 0 |
+| `test_prepare.py` | 18 | 0 |
+| `test_retrieval.py` | 14 | 0 |
+| `test_tokenizer.py` | 24 | **24** |
+| `test_transformer.py` | 20 | **20** |
+
+Tests cover: char/BPE round-trips, determinism, save/load, unknown chars, causal masking,
+attention shapes, forward pass, loss computation, generation, checkpoint, context truncation.
+
+### Key findings
+
+1. **BPE vs char**: BPE provides 2.83× compression, allowing the same context window to span
+   more semantic content. Char model reaches lower perplexity (different scale).
+2. **Overfitting**: The 3.5M-parameter large model severely overfits 137K BPE tokens — best val
+   at step 600 (4.07), then climbs to 5.36. Small models show mild or no overfitting at 3K steps.
+3. **Memorisation**: Surface pattern memorisation (formatting, bigrams) present; factual
+   multi-sentence claim memorisation absent at the 5-gram threshold.
+4. **Architecture**: All components built from PyTorch primitives — no `nn.Transformer` class.
+   Weight tying between token embeddings and LM head confirmed.
+
+### Phase 4 validation
+
+- Result: **pass** (99/99 tests, all three experiments reproduced, notebook executed clean).
