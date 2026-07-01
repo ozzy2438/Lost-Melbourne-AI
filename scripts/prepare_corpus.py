@@ -537,7 +537,12 @@ def extract_events(passages: list[dict[str, Any]], entities: list[dict[str, Any]
                         "bridge", "building", "church", "hotel", "market", "station", "town hall"
                     }
                 ]
-                involved = specific or [e for e in involved if e["entity_type"] not in {"place", "suburb", "street"}]
+                involved = specific or [
+                    e for e in involved
+                    if e["entity_type"] not in {
+                        "place", "suburb", "street", "government_institution", "person", "organisation"
+                    }
+                ]
                 inverted = bool(re.match(
                     r"^(?:Built|Constructed|Completed|Opened|Demolished|Renovated|Restored|Redeveloped)\b",
                     sentence,
@@ -607,10 +612,12 @@ def extract_relations(passages: list[dict[str, Any]], entities: list[dict[str, A
     lookup = {(normalise_key(e["canonical_name"]), e["entity_type"]): e for e in entities}
     mentions = {p["passage_id"]: passage_entity_mentions(p, entities) for p in passages}
     relations: list[dict[str, Any]] = []
-    proper_name = r"([A-Z][A-Za-z&'’.-]*(?:[ \t]+[A-Z][A-Za-z&'’.-]*){0,5})"
+    name_token = r"[A-Z][A-Za-z&'’.-]*"
+    proper_name = rf"({name_token}(?:(?:[ \t]+(?:and|of|the)[ \t]+|[ \t]+|,\s*){name_token}){{0,6}})"
+    designer_prefix = r"(?:(?:the|an?)\s+)?(?:(?:English|local|railways?)\s+)?(?:(?:architects?|architectural practice|office of)\s+)?"
     rules = [
-        ("DESIGNED_BY", re.compile(r"(?i:\bdesigned by\s+)" + proper_name), "person"),
-        ("OPERATED_BY", re.compile(r"(?i:\boperated by\s+)" + proper_name), "organisation"),
+        ("DESIGNED_BY", re.compile(r"(?i:\bdesigned by\s+)" + designer_prefix + proper_name), "person"),
+        ("OPERATED_BY", re.compile(r"(?i:\boperated by\s+(?:the\s+)?)" + proper_name), "organisation"),
         ("RENAMED_TO", re.compile(r"(?i:\brenamed (?:as|to)\s+)" + proper_name), "building"),
         ("REPLACED_BY", re.compile(r"(?i:\breplaced by\s+)" + proper_name), "building"),
     ]
@@ -633,6 +640,8 @@ def extract_relations(passages: list[dict[str, Any]], entities: list[dict[str, A
                 target_name = _clean_entity_name(match.group(1))
                 if len(target_name) < 3:
                     continue
+                if relation_type == "DESIGNED_BY" and re.search(r"(?:,|\band\b|\bDepartment\b|\bPartners\b|\bArchitects\b)", target_name):
+                    target_type = "organisation"
                 target = _find_or_create_entity(target_name, target_type, passage["passage_id"], entities, lookup)
                 relations.append({
                     "relation_id": stable_id("rel", relation_type, subject["entity_id"], target["entity_id"], passage["passage_id"]),
@@ -653,8 +662,11 @@ def extract_relations(passages: list[dict[str, Any]], entities: list[dict[str, A
             subject, location = subjects[0], locations[0]
             relation_text = next((
                 s for s, _, _ in split_sentences(passage["text"])
-                if re.search(rf"\b{re.escape(subject['canonical_name'])}\b", s, re.I)
-                and re.search(rf"\b(?:located|situated|stands?|lies?|based)\b[^.]*\b{re.escape(location['canonical_name'])}\b", s, re.I)
+                if re.search(
+                    rf"\b{re.escape(subject['canonical_name'])}\b[^.]{{0,160}}\b(?:located|situated|stands?|lies?|based)\b[^.]*\b{re.escape(location['canonical_name'])}\b",
+                    s,
+                    re.I,
+                )
             ), None)
             if relation_text:
                 start = passage["text"].find(relation_text)
@@ -670,7 +682,15 @@ def extract_relations(passages: list[dict[str, Any]], entities: list[dict[str, A
                     "confidence": 0.82,
                     "extraction_method": "co_mention_location_rule_v1",
                 })
-    unique = {r["relation_id"]: r for r in relations}
+    unique: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    for relation in relations:
+        key = (
+            relation["relation_type"],
+            relation["subject_entity_id"],
+            relation["object_entity_id"] or str(relation["object_value"]),
+            normalise_key(relation["supporting_text"]),
+        )
+        unique.setdefault(key, relation)
     entities.sort(key=lambda item: item["entity_id"])
     return sorted(unique.values(), key=lambda item: item["relation_id"])
 

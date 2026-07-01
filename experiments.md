@@ -153,3 +153,77 @@ historical data layer without embeddings, model training, a final RAG pipeline, 
   licence exclusions, valid GeoJSON, split isolation, deterministic reruns, and execution
   from `/tmp`.
 - Result: **pass**.
+
+---
+
+## 2026-06-30 — Phase 3: Representation and Retrieval Laboratory
+
+### Goal
+
+Measure how reliably sparse, dense, hybrid and structured retrieval can recover the
+correct provenance-bearing passage without training the tiny Transformer or building RAG/UI.
+
+### Phase 2 verification and correction
+
+- Loaded and cross-validated all eight required Phase 2 outputs.
+- The initial audit started from 410 entities, 61 events and 7 relations.
+- Removed co-mention-only location edges, a government organisation incorrectly selected
+  as a demolished structure, and other planned/unsupported event assignments.
+- Expanded only explicit `designed by` and `operated by` patterns, including architectural
+  practice names. The corrected fabric contains 413 entities, 52 events, 8 relations and
+  60 validated claims. Every retained edge still has an exact passage span.
+- Audit conclusion: graph sparsity is real and also reflects deliberately conservative
+  rules; relation counts were not inflated to improve retrieval.
+
+### Evaluation set
+
+- Added 60 manually templated and deterministically validated questions.
+- Mix: 50 answerable and 10 unanswerable; 26 easy, 18 medium and 16 hard.
+- 45 development questions are used for model/chunk/transformation/threshold decisions.
+- 15 held-out test questions are evaluated only after those choices are fixed.
+
+### Dense models
+
+| Model | Revision | Dimension | Licence | Estimated memory | Cached model size |
+| --- | --- | ---: | --- | ---: | ---: |
+| `sentence-transformers/all-MiniLM-L6-v2` | `1110a243fdf4` | 384 | Apache-2.0 | 90,852,864 B | 91,599,528 B |
+| `BAAI/bge-small-en-v1.5` | `5c38ec7c405e` | 384 | MIT | 133,440,000 B | 134,505,940 B |
+
+Both models were run locally over passage-level text with L2-normalised vectors and
+transparent NumPy cosine similarity. Development metrics selected BGE-small as the dense
+component.
+
+### Held-out retrieval results
+
+| Method | R@1 | R@3 | R@5 | MRR | nDCG@10 | Unanswerable precision |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| BM25 | 0.500 | 0.833 | 0.917 | 0.683 | 0.758 | 0.167 |
+| TF-IDF | **0.750** | **0.917** | 0.917 | **0.845** | **0.875** | **0.250** |
+| MiniLM dense | 0.417 | 0.750 | 0.833 | 0.595 | 0.665 | 0.000 |
+| BGE-small dense | 0.500 | 0.833 | **1.000** | 0.672 | 0.701 | 0.000 |
+| Hybrid RRF | 0.667 | 0.750 | 0.917 | 0.760 | 0.818 | 0.111 |
+| Hybrid + structured | 0.667 | 0.833 | 0.917 | 0.781 | 0.849 | 0.100 |
+
+### Decisions and findings
+
+- Default retrieval: **TF-IDF**, selected with a development-only reliability score weighted
+  50% MRR, 30% Recall@5 and 20% unanswerable precision. It remained the strongest held-out
+  method with MRR 0.845 and is also the lowest-latency practical default.
+- Hybrid + structured is retained for evidence exploration, but its held-out MRR fell to
+  0.781. BGE-small alone reached test Recall@5 = 1.000, while dense abstention remained weak.
+- Original 291–448-word passages beat 157–220-word small and parent-child variants on
+  development MRR. Smaller chunks damaged multi-passage/context questions in this corpus.
+- Entity-aware deterministic expansion won on development data, although test metrics tied
+  the no-transform and alias-only variants.
+- The preliminary evidence threshold can correctly reject some absent-answer questions but
+  unanswerable precision remains low. This is a measured limitation, not a solved problem.
+- LLM query rewriting was not run; original queries and deterministic expansions are logged.
+
+### Validation
+
+- 52 / 52 offline tests passed: 23 collection, 18 preparation and 11 retrieval tests.
+- Retrieval tests cover corpus integrity, deterministic indexing, stable child IDs, embedding
+  dimensions, ordering, deduplication, temporal/geographic filters, alias expansion,
+  abstention, alternate working directories and sparse operation with no network.
+- The representation notebook ran top-to-bottom with six executed code cells and no errors.
+- Result: **pass**.

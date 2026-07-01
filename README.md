@@ -13,7 +13,8 @@ Small end-to-end Generative AI project about Melbourne's lost places:
 ## Current status
 
 Phase 1 (scaffold), Phase 1 Recovery (reproducible data collection), and Phase 2
-(provenance-aware Historical Knowledge Fabric) are complete.
+(provenance-aware Historical Knowledge Fabric) are complete. Phase 3 (Representation
+and Retrieval Laboratory) is also complete.
 The original Phase 1 report cited 27 Markdown files that were never committed to the
 repository. The collection pipeline has been rebuilt from scratch with a replacement corpus.
 
@@ -108,3 +109,42 @@ must still pass exact source-span validation.
 
 Phase 2 deliberately does **not** create embeddings, train a Transformer, build the final
 RAG pipeline, or create a user interface.
+
+## How to reproduce the Phase 3 retrieval benchmark
+
+Phase 3 uses Python 3.12 because the local system Python may be newer than the available
+PyTorch wheels.
+
+```bash
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -r requirements-retrieval.txt
+
+# Regenerate Phase 2 after the supported extraction-rule correction
+.venv/bin/python scripts/prepare_corpus.py
+
+# Build sparse indexes and cached passage embeddings
+.venv/bin/python scripts/build_retrieval_indexes.py
+
+# Evaluate all retrieval, chunk, query-transform, structured and abstention variants
+.venv/bin/python scripts/evaluate_retrieval.py
+
+# Run the retrieval-only answerer with hybrid+structured candidates, TF-IDF reranking,
+# returned evidence passages, and development-calibrated abstention
+.venv/bin/python scripts/answer_query.py "Who designed the Metropolitan Meat Market?"
+
+# Run the complete offline test suite
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
+
+# Re-run the educational representation notebook
+.venv/bin/jupyter execute notebooks/representation_lab.ipynb --inplace \
+  --timeout=180 --kernel_name=python3
+```
+
+Generated indexes and dense vectors are cached under `artifacts/retrieval/` and excluded
+from Git. The human-readable evaluation labels, aggregate benchmark reports, failure
+analysis and content-free result traces are tracked. The dense model revisions are pinned
+in `src/retrieval/dense.py`.
+
+The retrieval-only answerer returns evidence passages or an abstention fallback; it does
+not generate free-form answers, train the tiny Transformer, build the final RAG
+application, or create a production UI.

@@ -10,13 +10,13 @@ The 25 collected pages are now a linked historical evidence layer. One 28-word d
 | --- | ---: |
 | Documents | 24 |
 | Passages | 182 |
-| Entities | 410 |
-| Historical events | 61 |
-| Relations | 7 |
-| Validated claims | 68 |
+| Entities | 413 |
+| Historical events | 52 |
+| Relations | 8 |
+| Validated claims | 60 |
 | Unsupported claims accepted | 0 |
 | GeoJSON point features | 12 |
-| Events with temporal expressions | 50 |
+| Events with temporal expressions | 44 |
 | Conflict groups | 0 |
 
 ### Entities by type
@@ -29,8 +29,8 @@ The 25 collected pages are now a linked historical evidence layer. One 28-word d
 | hotel | 41 |
 | landmark | 32 |
 | market | 20 |
-| organisation | 19 |
-| person | 3 |
+| organisation | 21 |
+| person | 4 |
 | place | 2 |
 | railway_station | 16 |
 | street | 112 |
@@ -42,12 +42,12 @@ The 25 collected pages are now a linked historical evidence layer. One 28-word d
 | Type | Count |
 | --- | ---: |
 | closure | 1 |
-| construction | 31 |
-| demolition | 2 |
-| heritage_listing | 4 |
-| opening | 14 |
+| construction | 29 |
+| demolition | 1 |
+| heritage_listing | 3 |
+| opening | 10 |
 | redevelopment | 2 |
-| relocation | 5 |
+| relocation | 4 |
 | renaming | 1 |
 | renovation | 1 |
 
@@ -55,9 +55,10 @@ The 25 collected pages are now a linked historical evidence layer. One 28-word d
 
 | Type | Count |
 | --- | ---: |
-| DEMOLISHED_IN | 2 |
-| DESIGNED_BY | 3 |
-| LOCATED_IN | 2 |
+| DEMOLISHED_IN | 1 |
+| DESIGNED_BY | 5 |
+| LOCATED_IN | 1 |
+| OPERATED_BY | 1 |
 
 ## Five example entities
 
@@ -77,11 +78,11 @@ The 25 collected pages are now a linked historical evidence layer. One 28-word d
 
 ## Five example relations
 
+- `rel_3c666008f6946048` — DESIGNED_BY from `ent_602749a5f51504e6` to `ent_456b18992261f49c`; support: `pass_64b916a429fca5c9`
+- `rel_4f78fa7a38393efe` — OPERATED_BY from `ent_1b6a0d36fa4b47b8` to `ent_e33b17923a029127`; support: `pass_12b103446aa8a862`
 - `rel_573b123bd4522596` — DESIGNED_BY from `ent_746dcb89cb29c4d9` to `ent_e1fc545200c08100`; support: `pass_d8b83d8852008979`
-- `rel_57eeedc50209c9f0` — DESIGNED_BY from `ent_3f75b9f1cdfb14c9` to `ent_4e83c5c5b5f60f70`; support: `pass_6e5038f696078efa`
+- `rel_5da43955fb7e6b53` — DESIGNED_BY from `ent_980d60a718678b06` to `ent_4448190e143b71ef`; support: `pass_6a9d3b12c5173a50`
 - `rel_735814ac58fc4936` — DESIGNED_BY from `ent_46943f4e817a8347` to `ent_73717bb39ba5fa10`; support: `pass_9cd8ef1c7830bdfd`
-- `rel_76292d4a95138a37` — LOCATED_IN from `ent_11ebaa16511600d1` to `ent_7c9b48c690a949ec`; support: `pass_64b916a429fca5c9`
-- `rel_86d7e8b021afd6fa` — LOCATED_IN from `ent_b25ac7536e8bf87b` to `ent_6c8ebb854a44ee52`; support: `pass_3ef76e53e39458b1`
 
 ## Five example claims and exact supporting spans
 

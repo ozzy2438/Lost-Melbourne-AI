@@ -32,10 +32,12 @@ Work one phase at a time. After each phase:
 - Create document-level splits and a licence-filtered, source-balanced future training corpus.
 - Do not create embeddings, train a model, build final RAG, or create the UI.
 
-### Phase 3 - Knowledge exploration and linked wiki
-- Create interconnected Markdown pages in `wiki/pages/`.
-- Link entities (buildings, suburbs, timelines, people, events).
-- Keep citation links to source passages.
+### Phase 3 - Representation and Retrieval Laboratory
+- Audit Historical Knowledge Fabric connectivity without accepting unsupported edges.
+- Benchmark BM25, TF-IDF, two local dense encoders, hybrid RRF, and structured reranking.
+- Compare original, small, and parent-child passage representations.
+- Calibrate preliminary abstention behaviour on answerable and unanswerable questions.
+- Preserve complete retrieval score traces and held-out test evaluation.
 
 ### Phase 4 - Tokenizer implementation
 - Implement tokenizer training and encode/decode pipeline.
