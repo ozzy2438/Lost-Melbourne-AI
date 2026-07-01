@@ -128,6 +128,10 @@ uv pip install --python .venv/bin/python -r requirements-retrieval.txt
 # Evaluate all retrieval, chunk, query-transform, structured and abstention variants
 .venv/bin/python scripts/evaluate_retrieval.py
 
+# Run the retrieval-only answerer with hybrid+structured candidates, TF-IDF reranking,
+# returned evidence passages, and development-calibrated abstention
+.venv/bin/python scripts/answer_query.py "Who designed the Metropolitan Meat Market?"
+
 # Run the complete offline test suite
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
 
@@ -141,5 +145,6 @@ from Git. The human-readable evaluation labels, aggregate benchmark reports, fai
 analysis and content-free result traces are tracked. The dense model revisions are pinned
 in `src/retrieval/dense.py`.
 
-Phase 3 does **not** train the tiny Transformer, generate answers, build the final RAG
+The retrieval-only answerer returns evidence passages or an abstention fallback; it does
+not generate free-form answers, train the tiny Transformer, build the final RAG
 application, or create a production UI.

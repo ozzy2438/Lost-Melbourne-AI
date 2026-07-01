@@ -17,9 +17,11 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 from retrieval import (  # noqa: E402
     BM25Index,
     DenseIndex,
+    FALLBACK_RESPONSE,
     HashingEncoder,
     HistoricalCorpus,
     QueryTransformer,
+    RetrievalAnswerer,
     StructuredRetriever,
     TfidfIndex,
     build_passages,
@@ -142,6 +144,95 @@ class RetrievalTestCase(unittest.TestCase):
         self.assertGreater(threshold, 0.2)
         rows = [{"expected_answerable": False, "abstained": True, "expected_relevant_passage_ids": [], "ranked_passage_ids": []}]
         self.assertEqual(evaluate_rankings(rows)["unanswerable_precision"], 1.0)
+
+    def test_answering_pipeline_returns_evidence(self):
+        dense, _ = DenseIndex.build(self.passages, HashingEncoder())
+        answerer = RetrievalAnswerer(
+            corpus=self.corpus,
+            passages=self.passages,
+            bm25=BM25Index(self.passages),
+            tfidf=TfidfIndex(self.passages),
+            dense=dense,
+        )
+        answerer.abstention_threshold = 0.0
+        result = answerer.answer("When was Eastern Market demolished?", evidence_k=5)
+        self.assertFalse(result["abstained"])
+        self.assertEqual(result["candidate_strategy"], "hybrid_structured_top_10")
+        self.assertEqual(result["reranking_strategy"], "tfidf_lexical_contribution")
+        self.assertGreaterEqual(len(result["returned_evidence"]), 1)
+        self.assertIn("tfidf_lexical", result["returned_evidence"][0]["score_components"])
+
+    def test_answering_pipeline_uses_fallback_when_abstaining(self):
+        dense, _ = DenseIndex.build(self.passages, HashingEncoder())
+        answerer = RetrievalAnswerer(
+            corpus=self.corpus,
+            passages=self.passages,
+            bm25=BM25Index(self.passages),
+            tfidf=TfidfIndex(self.passages),
+            dense=dense,
+        )
+        answerer.abstention_threshold = 999.0
+        result = answerer.answer("Who curated the moon palace?", evidence_k=5)
+        self.assertTrue(result["abstained"])
+        self.assertEqual(result["fallback_response"], FALLBACK_RESPONSE)
+        self.assertEqual(result["returned_evidence"], [])
+
+    def test_answering_pipeline_calibrates_threshold_from_development_split(self):
+        dense, _ = DenseIndex.build(self.passages, HashingEncoder())
+        answerer = RetrievalAnswerer(
+            corpus=self.corpus,
+            passages=self.passages,
+            bm25=BM25Index(self.passages),
+            tfidf=TfidfIndex(self.passages),
+            dense=dense,
+        )
+        threshold = answerer.calibrate_from_rows([
+            {
+                "query_id": "q001",
+                "question": "When was Eastern Market demolished?",
+                "query_type": "temporal_fact",
+                "expected_relevant_passage_ids": ["pass_1"],
+                "expected_entity_ids": ["ent_market"],
+                "expected_answerable": True,
+                "difficulty": "easy",
+                "annotation_notes": "fixture",
+                "evaluation_split": "development",
+            },
+            {
+                "query_id": "q002",
+                "question": "Who designed Hotel Windsor?",
+                "query_type": "architect_fact",
+                "expected_relevant_passage_ids": ["pass_2"],
+                "expected_entity_ids": ["ent_hotel"],
+                "expected_answerable": True,
+                "difficulty": "easy",
+                "annotation_notes": "fixture",
+                "evaluation_split": "development",
+            },
+            {
+                "query_id": "q003",
+                "question": "Who curated the moon palace?",
+                "query_type": "unanswerable",
+                "expected_relevant_passage_ids": [],
+                "expected_entity_ids": [],
+                "expected_answerable": False,
+                "difficulty": "hard",
+                "annotation_notes": "fixture",
+                "evaluation_split": "development",
+            },
+            {
+                "query_id": "q004",
+                "question": "Was Eastern Market in Melbourne?",
+                "query_type": "location_fact",
+                "expected_relevant_passage_ids": ["pass_1"],
+                "expected_entity_ids": ["ent_market", "ent_melbourne"],
+                "expected_answerable": True,
+                "difficulty": "easy",
+                "annotation_notes": "fixture",
+                "evaluation_split": "test",
+            },
+        ])
+        self.assertGreater(threshold, 0.0)
 
     def test_sparse_build_from_different_working_directory_without_network(self):
         artifact = self.root / "artifacts"

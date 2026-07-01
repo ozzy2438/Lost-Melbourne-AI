@@ -59,9 +59,19 @@ class TfidfIndex:
         self.matrix = self.vectorizer.fit_transform(passage.search_text for passage in passages)
 
     def search(self, query: str, top_k: int = 10) -> list[RetrievalResult]:
-        query_vector = self.vectorizer.transform([query])
-        scores = (self.matrix @ query_vector.T).toarray().ravel()
+        scores = self.score_array(query)
         return _rank(self.passages, scores, top_k, "tfidf")
+
+    def score_array(self, query: str) -> np.ndarray:
+        query_vector = self.vectorizer.transform([query])
+        return (self.matrix @ query_vector.T).toarray().ravel()
+
+    def score_by_passage_id(self, query: str) -> dict[str, float]:
+        scores = self.score_array(query)
+        return {
+            passage.passage_id: float(scores[index])
+            for index, passage in enumerate(self.passages)
+        }
 
 
 def _rank(passages: list[SearchPassage], scores: np.ndarray, top_k: int, component: str) -> list[RetrievalResult]:
