@@ -3,12 +3,13 @@
 Retrieval-only: this UI calls the existing ``RetrievalAnswerer`` and displays
 its evidence passages or abstention message. It does not modify retrieval
 logic, does not generate free-form text, and does not connect the Tiny
-Transformer. This module only changes presentation.
+Transformer. This module only changes presentation and diagnostics.
 """
 
 from __future__ import annotations
 
 import sys
+import time
 from pathlib import Path
 
 import streamlit as st
@@ -201,13 +202,16 @@ if ask:
                 f"Details: {exc}"
             )
         else:
+            t0 = time.perf_counter()
             with st.spinner("Retrieving evidence..."):
                 result = answerer.answer(question)
+            latency_ms = (time.perf_counter() - t0) * 1000
 
             evidence = result["returned_evidence"]
             top_score = result["top_score"]
             threshold = result["abstention_threshold"]
 
+            # ── Answer ─────────────────────────────────────────────────────
             with st.container(border=True):
                 if result["abstained"] or not evidence:
                     st.markdown('<span class="abstain-label">⚠️ No confident answer</span>', unsafe_allow_html=True)
@@ -216,8 +220,14 @@ if ask:
                     top = evidence[0]
                     st.markdown('<span class="answer-label">✅ Answer</span>', unsafe_allow_html=True)
                     st.markdown(top["text"])
-                    st.caption(f"Source: {top['title']} — {top['section_title']}")
+                    if top["source_url"]:
+                        st.markdown(
+                            f"📎 **Source:** [{top['title']}]({top['source_url']}) — *{top['section_title']}*"
+                        )
+                    else:
+                        st.caption(f"Source: {top['title']} — {top['section_title']}")
 
+            # ── Confidence summary ───────────────────────────────────────────
             label, colour = confidence_badge(top_score, threshold)
             col1, col2, col3 = st.columns([1, 1, 2])
             with col1:
@@ -233,6 +243,21 @@ if ask:
                 )
             st.progress(min(1.0, top_score / max(threshold * 2, 1e-6)))
 
+            # ── Diagnostics ──────────────────────────────────────────────────
+            with st.expander("🔍 Diagnostics", expanded=False):
+                dcol1, dcol2, dcol3 = st.columns(3)
+                dcol1.metric("Retrieval method", result["candidate_strategy"])
+                dcol2.metric("Passages returned", len(evidence))
+                dcol3.metric("Query latency", f"{latency_ms:.1f} ms")
+
+                dcol4, dcol5 = st.columns(2)
+                abstention_label = "Yes ✋" if result["abstained"] else "No ✅"
+                dcol4.metric("Abstained", abstention_label)
+                dcol5.metric("Reranking", result["reranking_strategy"])
+
+                st.caption(f"Transformed query: `{result['transformed_query']}`")
+
+            # ── Evidence passages ────────────────────────────────────────────
             if evidence:
                 st.markdown(f"#### 📚 Evidence passages ({len(evidence)})")
                 for rank, item in enumerate(evidence, start=1):
@@ -254,3 +279,5 @@ if ask:
                                 f'target="_blank">source</a></span>'
                             )
                         st.markdown(tags, unsafe_allow_html=True)
+                        if item.get("licence"):
+                            st.caption(f"Licence: {item['licence']}")
